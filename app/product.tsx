@@ -5,6 +5,7 @@ import { ProductType } from '../types/type';
 import productsData from '../data/db.json';
 import { useLocalSearchParams } from 'expo-router';
 import { useCart } from '../components/CartContext';
+import { useRouter } from 'expo-router';
 
 const ProductScreen = () => {
   const params = useLocalSearchParams();
@@ -13,6 +14,7 @@ const ProductScreen = () => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const { addToCart } = useCart();
+  const router = useRouter();
 
   if (!product) {
     return (
@@ -35,7 +37,7 @@ const ProductScreen = () => {
         color: selectedColor,
         quantity: 1
       });
-      Alert.alert('Produto adicionado', 'O produto foi adicionado ao carrinho!');
+      router.push('/(tabs)/cart');
     } catch (e) {
       Alert.alert('Erro', 'Não foi possível adicionar ao carrinho.');
     }

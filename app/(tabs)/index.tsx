@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, ActivityIndicator } from 'react-native';
 import { Banner, Promotions } from '../../components/HomeElements';
-import CategoryGrid from '../../components/CategoryGrid';
-import { CategoryType } from '../../types/type';
+import ProductGrid from '../../components/ProductGrid';
 import { Colors } from '../../constants/Colors';
 import SearchBar from '../../components/SearchBar';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import db from '../../data/db.json';
+import { ProductType } from '../../types/type';
 
 const bannerData = {
   image: require('../../assets/images/sale-banner.jpg'),
@@ -14,31 +14,32 @@ const bannerData = {
 };
 
 const HomeScreen = () => {
-  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    setCategories(db.categories);
+    setProducts(db.products);
     setLoading(false);
   }, []);
 
-  const filteredCategories = categories.filter(cat =>
-    cat.name.toLowerCase().includes(search.toLowerCase())
+  const filteredProducts = products.filter(prod =>
+    prod.title.toLowerCase().includes(search.toLowerCase()) ||
+    prod.description.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <View style={{flex: 1}}>
-      <SearchBar value={search} onChangeText={setSearch} placeholder="Buscar categorias..." />
+      <SearchBar value={search} onChangeText={setSearch} placeholder="Buscar produtos..." />
       <Breadcrumbs items={["Home"]} />
       <ScrollView style={styles.bg} contentContainerStyle={styles.container}>
         <Banner image={bannerData.image} title={bannerData.title} />
         <Promotions />
-        <Text style={styles.sectionTitle}>Categorias</Text>
+        <Text style={styles.sectionTitle}>Produtos em destaque</Text>
         {loading ? (
           <ActivityIndicator color={Colors.primary} size="large" style={{ marginVertical: 30 }} />
         ) : (
-          <CategoryGrid categories={filteredCategories} />
+          <ProductGrid products={filteredProducts.slice(0, 8)} />
         )}
       </ScrollView>
     </View>

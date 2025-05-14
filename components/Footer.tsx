@@ -1,18 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Colors } from '../constants/Colors';
+import { useRouter } from 'expo-router';
 
-const Footer = () => (
-  <View style={styles.footer}>
-    <View style={styles.linksRow}>
-      <Text style={styles.link}>Sobre Nós</Text>
-      <Text style={styles.link}>Política de Privacidade</Text>
-      <Text style={styles.link}>Fale Conosco</Text>
-      <Text style={styles.link}>FAQ</Text>
+const Footer = () => {
+  const router = useRouter();
+  return (
+    <View style={styles.footer}>
+      <View style={styles.linksRow}>
+        <Text style={styles.link} onPress={() => router.push('/about')}>Sobre Nós</Text>
+        <Text style={styles.link} onPress={() => router.push('/policy')}>Política de Privacidade</Text>
+        <Text style={styles.link} onPress={() => router.push('/contact')}>Fale Conosco</Text>
+        <Text style={styles.link} onPress={() => router.push('/faq')}>FAQ</Text>
+      </View>
+      <Text style={styles.copyright}>© {new Date().getFullYear()} E-commerce</Text>
     </View>
-    <Text style={styles.copyright}>© {new Date().getFullYear()} E-commerce</Text>
-  </View>
-);
+  );
+};
 
 export default Footer;
 

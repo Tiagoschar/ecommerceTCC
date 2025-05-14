@@ -478,6 +478,90 @@
         "name": "Móveis",
         "image": "https://i.imgur.com/Qphac99.jpeg"
       }
+    },
+    {
+      "id": 1001,
+      "title": "Colar de Ouro com Pingente de Coração",
+      "price": 299,
+      "description": "Colar delicado em ouro 18k com pingente de coração, perfeito para presentear alguém especial.",
+      "images": [
+        "https://i.imgur.com/1jQ4Z1A.png"
+      ],
+      "category": {
+        "id": 5,
+        "name": "Joias",
+        "image": "https://pngimagesfree.com/wp-content/uploads/Gold-Jewellery-Necklaces-PNG@.png"
+      }
+    },
+    {
+      "id": 1002,
+      "title": "Pulseira de Prata com Zircônias",
+      "price": 159,
+      "description": "Pulseira elegante em prata 925 com detalhes em zircônia, ideal para ocasiões especiais.",
+      "images": [
+        "https://i.imgur.com/2jQ4Z1B.png"
+      ],
+      "category": {
+        "id": 5,
+        "name": "Joias",
+        "image": "https://pngimagesfree.com/wp-content/uploads/Gold-Jewellery-Necklaces-PNG@.png"
+      }
+    },
+    {
+      "id": 1003,
+      "title": "Caneca Personalizada de Cerâmica",
+      "price": 29,
+      "description": "Caneca de cerâmica branca com estampa divertida, resistente ao micro-ondas e lava-louças.",
+      "images": [
+        "https://i.imgur.com/BG8J0Fj.jpg"
+      ],
+      "category": {
+        "id": 6,
+        "name": "Diversos",
+        "image": "https://i.imgur.com/BG8J0Fj.jpg"
+      }
+    },
+    {
+      "id": 1004,
+      "title": "Chaveiro de Couro Personalizado",
+      "price": 19,
+      "description": "Chaveiro feito à mão em couro legítimo, personalizável com nome ou iniciais.",
+      "images": [
+        "https://i.imgur.com/BG8J0Fj.jpg"
+      ],
+      "category": {
+        "id": 6,
+        "name": "Diversos",
+        "image": "https://i.imgur.com/BG8J0Fj.jpg"
+      }
+    },
+    {
+      "id": 1005,
+      "title": "Brinco de Pérola Clássico",
+      "price": 89,
+      "description": "Brinco clássico com pérolas naturais, perfeito para um visual sofisticado.",
+      "images": [
+        "https://i.imgur.com/1jQ4Z1A.png"
+      ],
+      "category": {
+        "id": 5,
+        "name": "Joias",
+        "image": "https://pngimagesfree.com/wp-content/uploads/Gold-Jewellery-Necklaces-PNG@.png"
+      }
+    },
+    {
+      "id": 1006,
+      "title": "Kit de Adesivos Decorativos",
+      "price": 15,
+      "description": "Kit com 50 adesivos variados para personalizar notebooks, garrafas e outros objetos.",
+      "images": [
+        "https://i.imgur.com/BG8J0Fj.jpg"
+      ],
+      "category": {
+        "id": 6,
+        "name": "Diversos",
+        "image": "https://i.imgur.com/BG8J0Fj.jpg"
+      }
     }
   ],
   "categories": [

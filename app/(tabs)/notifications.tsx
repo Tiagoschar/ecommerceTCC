@@ -1,22 +1,33 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Colors } from '../../constants/Colors';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
-type Props = {}
+const NotificationsScreen = () => (
+  <View style={styles.container}>
+    <Breadcrumbs items={["Home", "Notificações"]} />
+    <Text style={styles.title}>Notificações</Text>
+    <Text style={styles.text}>Você receberá aqui avisos de promoções, status de pedidos e novidades.</Text>
+  </View>
+);
 
-const NotificationsScreen = (props: Props) => {
-  return (
-    <View style={styles.container}>
-      <Text>Notifications Screen</Text>
-    </View>
-  )
-}
-
-export default NotificationsScreen
+export default NotificationsScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
+    backgroundColor: Colors.background,
+    padding: 24,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: Colors.primary,
+    marginBottom: 12,
+  },
+  text: {
+    fontSize: 15,
+    color: Colors.gray,
+    marginBottom: 8,
+  },
+});

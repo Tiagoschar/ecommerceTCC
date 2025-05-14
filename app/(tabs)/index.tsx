@@ -1,22 +1,64 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, ScrollView, ActivityIndicator } from 'react-native';
+import { Banner, CategoryGrid, Promotions } from '../../components/HomeElements';
+import { CategoryType } from '../../types/type';
+import { Colors } from '../../constants/Colors';
+import SearchBar from '../../components/SearchBar';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import db from '../../data/db.json';
 
-type Props = {}
+const bannerData = {
+  image: require('../../assets/images/sale-banner.jpg'),
+  title: 'Super Promoções!'
+};
 
-const HomeScreen = (props: Props) => {
+const HomeScreen = () => {
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    setCategories(db.categories);
+    setLoading(false);
+  }, []);
+
+  const filteredCategories = categories.filter(cat =>
+    cat.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <View style={styles.container}>
-      <Text>Home Screen</Text>
+    <View style={{flex: 1}}>
+      <SearchBar value={search} onChangeText={setSearch} placeholder="Buscar categorias..." />
+      <Breadcrumbs items={["Home"]} />
+      <ScrollView style={styles.bg} contentContainerStyle={styles.container}>
+        <Banner image={bannerData.image} title={bannerData.title} />
+        <Promotions />
+        <Text style={styles.sectionTitle}>Categorias</Text>
+        {loading ? (
+          <ActivityIndicator color={Colors.primary} size="large" style={{ marginVertical: 30 }} />
+        ) : (
+          <CategoryGrid categories={filteredCategories} />
+        )}
+      </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;
 
 const styles = StyleSheet.create({
+  bg: {
+    backgroundColor: Colors.background,
+  },
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
+    padding: 18,
+    paddingBottom: 40,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.black,
+    marginBottom: 10,
+    marginTop: 10,
+  },
+});

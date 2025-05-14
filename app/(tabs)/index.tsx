@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, ActivityIndicator } from 'react-native';
-import { Banner, CategoryGrid, Promotions } from '../../components/HomeElements';
+import { Banner, Promotions } from '../../components/HomeElements';
+import CategoryGrid from '../../components/CategoryGrid';
 import { CategoryType } from '../../types/type';
 import { Colors } from '../../constants/Colors';
 import SearchBar from '../../components/SearchBar';
@@ -55,10 +56,11 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: Colors.black,
-    marginBottom: 10,
-    marginTop: 10,
+    color: Colors.primary,
+    marginBottom: 16,
+    marginTop: 16,
+    letterSpacing: 0.5,
   },
 });

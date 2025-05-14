@@ -1,23 +1,61 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, FlatList, Alert } from 'react-native';
 import { Colors } from '../constants/Colors';
 import { ProductType } from '../types/type';
 import productsData from '../data/db.json';
-
-// Exemplo: pega o primeiro produto
-const product: ProductType = productsData.products[0];
+import { useLocalSearchParams } from 'expo-router';
+import { useCart } from '../components/CartContext';
 
 const ProductScreen = () => {
+  const params = useLocalSearchParams();
+  const productId = params.id ? Number(params.id) : null;
+  const product: ProductType | undefined = productsData.products.find(p => p.id === productId);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const { addToCart } = useCart();
+
+  if (!product) {
+    return (
+      <View style={styles.container}><Text>Produto não encontrado.</Text></View>
+    );
+  }
+
+  const handleAddToCart = async () => {
+    if (!selectedSize || !selectedColor) {
+      Alert.alert('Selecione tamanho e cor', 'Por favor, escolha o tamanho e a cor antes de adicionar ao carrinho.');
+      return;
+    }
+    try {
+      await addToCart({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.images[0],
+        size: selectedSize,
+        color: selectedColor,
+        quantity: 1
+      });
+      Alert.alert('Produto adicionado', 'O produto foi adicionado ao carrinho!');
+    } catch (e) {
+      Alert.alert('Erro', 'Não foi possível adicionar ao carrinho.');
+    }
+  };
 
   return (
     <ScrollView style={styles.bg} contentContainerStyle={styles.container}>
-      <Image source={{ uri: product.images[0] }} style={styles.image} />
+      <FlatList
+        data={product.images}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(_, idx) => idx.toString()}
+        renderItem={({ item }) => (
+          <Image source={{ uri: item }} style={styles.image} />
+        )}
+        style={{ marginBottom: 18 }}
+      />
       <Text style={styles.title}>{product.title}</Text>
       <Text style={styles.price}>R$ {product.price}</Text>
       <Text style={styles.desc}>{product.description}</Text>
-      {/* Variações exemplo */}
       <Text style={styles.section}>Tamanho</Text>
       <View style={styles.variationRow}>
         {['P', 'M', 'G', 'GG'].map(size => (
@@ -42,7 +80,7 @@ const ProductScreen = () => {
           </TouchableOpacity>
         ))}
       </View>
-      <TouchableOpacity style={styles.addCartBtn}>
+      <TouchableOpacity style={styles.addCartBtn} onPress={handleAddToCart}>
         <Text style={styles.addCartText}>Adicionar ao Carrinho</Text>
       </TouchableOpacity>
       {/* Avaliações e produtos relacionados podem ser adicionados aqui */}
@@ -64,7 +102,8 @@ const styles = StyleSheet.create({
     width: 220,
     height: 220,
     borderRadius: 12,
-    marginBottom: 18,
+    marginRight: 12,
+    backgroundColor: Colors.background,
   },
   title: {
     fontSize: 22,

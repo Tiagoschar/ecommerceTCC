@@ -3,8 +3,11 @@ import { View, StyleSheet } from 'react-native';
 import { Tabs } from "expo-router";
 import { Ionicons } from '@expo/vector-icons';
 import Footer from '../../components/Footer';
+import { useCart } from '../../components/CartContext';
 
 export default function TabLayout() {
+  const { cart } = useCart();
+  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <View style={styles.container}>
       <View style={styles.tabsWrapper}>
@@ -29,7 +32,7 @@ export default function TabLayout() {
           }} />
           <Tabs.Screen name='cart' options={{
             title: 'Cart',
-            tabBarBadge: 3,
+            tabBarBadge: cartCount > 0 ? cartCount : undefined,
             tabBarIcon: ({color}) => (
               <Ionicons name='cart-outline' size={22} color={color} />
             )

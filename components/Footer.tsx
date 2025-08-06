@@ -13,7 +13,7 @@ const Footer = () => {
         <Text style={styles.link} onPress={() => router.push('/contact')}>Fale Conosco</Text>
         <Text style={styles.link} onPress={() => router.push('/faq')}>FAQ</Text>
       </View>
-      <Text style={styles.copyright}>© {new Date().getFullYear()} E-commerce</Text>
+      <Text style={styles.copyright}>© {new Date().getFullYear()} InfiCode</Text>
     </View>
   );
 };

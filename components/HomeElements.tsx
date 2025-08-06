@@ -1,18 +1,18 @@
-// Banner, CategoryGrid, and Promotion components for HomeScreen
+// Componentes banner, categoria e promoções pra Home
 import React from 'react';
 import { View, Text, Image, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { Colors } from '../constants/Colors';
 import { CategoryType, ProductType } from '../types/type';
 
-// Banner component
+// Component dos banners
 export const Banner = ({ image, title }: { image: string; title: string }) => (
   <View style={styles.bannerContainer}>
-    <Image source={{ uri: image }} style={styles.bannerImage} resizeMode="cover" />
+    <Image source={{ uri: '../assets/images/sale-banner.svg' }} style={styles.bannerImage} resizeMode="cover" />
     <Text style={styles.bannerText}>{title}</Text>
   </View>
 );
 
-// Category grid component
+// Componente das categorias
 export const CategoryGrid = ({ categories }: { categories: CategoryType[] }) => (
   <View style={styles.gridContainer}>
     {categories.map((cat) => (
@@ -24,7 +24,7 @@ export const CategoryGrid = ({ categories }: { categories: CategoryType[] }) => 
   </View>
 );
 
-// Promotions component
+// Componente das promoções
 export const Promotions = () => (
   <View style={styles.promoContainer}>
     <Text style={styles.promoTitle}>Vantagens</Text>

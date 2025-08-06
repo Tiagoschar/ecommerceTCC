@@ -9,7 +9,7 @@ import db from '../../data/db.json';
 import { ProductType } from '../../types/type';
 
 const bannerData = {
-  image: require('../../assets/images/sale-banner.jpg'),
+  image: require('../../assets/images/sale-banner.svg'),
   title: 'Super Promoções!'
 };
 
@@ -30,8 +30,7 @@ const HomeScreen = () => {
 
   return (
     <View style={{flex: 1}}>
-      <SearchBar value={search} onChangeText={setSearch} placeholder="Buscar produtos..." />
-      <Breadcrumbs items={["Home"]} />
+      <SearchBar value={search} onChangeText={setSearch} placeholder="Buscar produtos..." />  
       <ScrollView style={styles.bg} contentContainerStyle={styles.container}>
         <Banner image={bannerData.image} title={bannerData.title} />
         <Promotions />

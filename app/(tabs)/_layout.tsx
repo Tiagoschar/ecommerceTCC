@@ -45,7 +45,7 @@ export default function TabLayout() {
           }} />
         </Tabs>
       </View>
-      <Footer />
+      <Footer></Footer>
     </View>
   );
 }
